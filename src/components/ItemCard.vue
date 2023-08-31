@@ -3,8 +3,6 @@ import { Item } from '../stores/itemStore'
 import { useRouter } from 'vue-router'
 import { useItemStore } from '../stores/itemStore'
 import { Icon } from '@iconify/vue'
-import ItemModal from './ItemModal.vue'
-import { doc } from 'firebase/firestore'
 import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js'
 
 const itemStore = useItemStore()

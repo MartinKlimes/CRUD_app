@@ -5,7 +5,7 @@ import { onMounted } from 'vue';
 const itemStore = useItemStore()
 
 onMounted(() => {
-  document.getElementById('deleteModal').addEventListener('hide.bs.modal', () => {
+  document.getElementById('deleteModal')?.addEventListener('hide.bs.modal', () => {
     setTimeout(() => {
       itemStore.selectedItem = null
     }, 0)
@@ -15,7 +15,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- Modal -->
   <div
     class="modal fade"
     id="deleteModal"

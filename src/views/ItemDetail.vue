@@ -1,8 +1,6 @@
 <script setup>
 import { useRoute, useRouter } from 'vue-router'
 import { useItemStore } from '../stores/itemStore'
-import ItemForm from '../components/ItemForm.vue'
-import { ref, reactive, onMounted } from 'vue'
 
 const route = useRoute()
 const router = useRouter()
