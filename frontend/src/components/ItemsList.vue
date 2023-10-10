@@ -4,7 +4,7 @@ import ItemCard from './ItemCard.vue'
 
 const itemStore = useItemStore()
 
-function orderItems(event: Event) {
+async function orderItems(event: Event) {
   const value = (event.target as HTMLSelectElement).value
   if (value === 'titleAsc') {
     itemStore.sortType = 'title'
@@ -16,13 +16,14 @@ function orderItems(event: Event) {
     itemStore.sortType = 'date'
     itemStore.sortDirection = 'desc'
   }
-  itemStore.fetchItems()
+  await itemStore.orderItems()
+
 }
 </script>
 
 <template>
   <div class="card-header d-flex justify-content-between align-items-center">
-    <select @click="orderItems" class="form-select w-25" aria-label="Default select example">
+    <select @change="orderItems" class="form-select w-25" aria-label="Default select example">
       <option value="date">Date</option>
       <option value="titleAsc">Title (ascending)</option>
       <option value="titleDesc">Title (descending)</option>
@@ -46,9 +47,9 @@ function orderItems(event: Event) {
       <TransitionGroup name="items">
         <ItemCard
           v-for="item in itemStore.items"
-          :key="item.id"
+          :key="item._id"
           :item="item"
-          @click="itemStore.selectedItem = item.id"
+          @click="itemStore.selectedItem = item._id"
         />
       </TransitionGroup>
     </div>

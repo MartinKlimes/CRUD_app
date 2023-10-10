@@ -28,25 +28,27 @@ const isEditing = computed(() => {
   return itemsStore.selectedItem != null
 })
 
-function createItem() {
+async function createItem() {
   const newItem = {
     title: item.title,
     body: item.body,
     important: item.important,
     date: Date.now()
   }
-  itemsStore.createItem(newItem)
+  await itemsStore.createItem(newItem)
+  itemsStore.fetchItems()
 }
 
-function editItem() {
+async function editItem() {
   const updatedItem = {
     title: item.title,
     body: item.body,
     important: item.important,
     date: itemsStore.getItem(itemsStore.selectedItem).date,
-    id: itemsStore.selectedItem
+    _id: itemsStore.selectedItem
   }
-  itemsStore.editItem(updatedItem)
+  await itemsStore.editItem(updatedItem)
+  itemsStore.fetchItems()
 }
 
 const isValidate = computed(() => {

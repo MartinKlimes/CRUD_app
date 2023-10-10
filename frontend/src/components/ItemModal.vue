@@ -12,6 +12,12 @@ onMounted(() => {
   })
 })
 
+async function deleteItem() {
+  await itemStore.deleteItem()
+  itemStore.fetchItems()
+
+}
+
 </script>
 
 <template>
@@ -36,7 +42,7 @@ onMounted(() => {
         <div class="modal-body">Are you sure you want to delete the item?</div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button @click="itemStore.deleteItem()" type="button" class="btn btn-primary" data-bs-dismiss="modal">
+          <button @click="deleteItem" type="button" class="btn btn-primary" data-bs-dismiss="modal">
             Delete
           </button>
         </div>

@@ -14,11 +14,14 @@ const props = defineProps<{
 const router = useRouter()
 
 function goItemDetail() {
-  router.push({ name: 'itemDetail', params: { id: props.item.id } })
+  router.push({ name: 'itemDetail', params: { id: props.item._id } })
 }
 
 function showDeleteModal() {
-  itemStore.selectedItem = props.item.id
+  setTimeout(() => {
+    itemStore.selectedItem = props.item._id
+    
+  }, 100);
   const myModal = new bootstrap.Modal(document.getElementById('deleteModal'))
   myModal.show()
 }
